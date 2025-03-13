@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ナマイキデザイン</title>
+    <link rel="icon" href="2025 研究発表 ロゴ 2025 03 09.ico" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fffffc;
+        }
+
+        /* ヘッダー */
+        header {
+            background-color: #180614;
+            color: #fffffc;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 0;
+            box-sizing: border-box;
+            height: 80px; /* ヘッダーの高さ */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+
+        /* ヘッダーのタイトル画像 */
+        header img {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+            position: relative;
+        }
+
+        header nav {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+        }
+
+        header nav a {
+            color: #fffffc;
+            padding: 15px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        header nav a:hover {
+            background-color: #83ccd2;
+            color: #180614;
+        }
+
+        /* メニュートグルボタン */
+        .menu-toggle {
+            display: none;
+            position: absolute;
+            top: 50%;
+            right: 10px; /* 右に寄せる */
+            transform: translateY(-50%); /* 縦中央揃え */
+            background-color: #83ccd2;
+            color: #180614;
+            padding: 0;
+            border: none;
+            cursor: pointer;
+            font-size: 30px;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            border-radius: 5px;
+            z-index: 1100;
+            box-sizing: border-box;
+        }
+
+        /* メニュートグルの中のマーク */
+        .menu-toggle span {
+            line-height: 40px;
+        }
+
+        @media (max-width: 768px) {
+            header .container {
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            header nav {
+                display: none; /* 初期状態では非表示 */
+                flex-direction: column;
+                width: 100%;
+                background-color: #180614;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                box-sizing: border-box;
+            }
+
+            header nav.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            header nav a {
+                padding: 10px;
+                margin: 0 5px;
+                width: 100%;
+                text-align: center;
+            }
+
+            /* メニュートグルの修正 */
+            .menu-toggle {
+                width: 40px;
+                height: 40px;
+                padding: 0;
+                top: 50%;
+                right: 10px; /* 右寄せ */
+                transform: translateY(-50%); /* 縦中央揃え */
+            }
+
+            .menu-toggle span {
+                font-size: 30px;
+                line-height: 40px;
+            }
+
+            /* メニューが開いたとき、ヘッダーの下に表示されるように修正 */
+            header nav.active {
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background-color: #180614; /* 黒い背景 */
+                width: 100%;
+                padding: 20px 0;
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+       /* メインビジュアル（静止画） */
+.main-visual {
+    position: relative;
+    width: 100%;
+    margin-top: 90px; /* ヘッダーの高さを避ける */
+    overflow: hidden;
+}
+
+.main-visual img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* スマホ・フィーチャーフォン用の画像切り替え */
+@media (max-width: 768px) {
+    .main-visual img {
+        content: url('We are da one 2025 03 09 04.png'); /* スマホ用画像 */
+    }
+}
+        /* 本文 */
+        main {
+            padding: 20px;
+        }
+
+        .main-content {
+            font-size: 1rem;
+        }
+
+        .main-content .featured-article {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-top: 16.666%; /* 6:1 アスペクト比 (100 / 6 = 16.666) */
+            overflow: hidden;
+            margin-bottom: 20px;
+            background-image: url('著者s 2025 03 11.png'); /* 背景画像を指定 */
+            background-size: cover; /* 画像が要素全体に広がる */
+            background-position: center; /* 画像が中央に配置される */
+            background-repeat: no-repeat; /* 繰り返しなし */
+            margin-left: 0; /* 左端にぴったり配置 */
+            margin-right: 0; /* 右端にぴったり配置 */
+        }
+
+        .main-content .featured-article img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .main-content .featured-article .title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7), 
+                         -3px -3px 5px rgba(0, 0, 0, 0.7), 
+                         3px -3px 5px rgba(0, 0, 0, 0.7), 
+                         -3px 3px 5px rgba(0, 0, 0, 0.7);
+            text-align: center;
+            white-space: nowrap; /* テキストが改行されないようにする */
+        }
+
+        @media (max-width: 768px) {
+            .main-content .featured-article {
+                padding-top: 16.666%; /* 6:1 アスペクト比 */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content .featured-article {
+                padding-top: 50%; /* 2:1 アスペクト比 */
+            }
+
+            .main-content .featured-article .title {
+                font-size: 2rem; /* 縦画面で文字サイズを調整 */
+            }
+
+            .main-content {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* 新しい記事のリンクボックス */
+        .article-container {
+            display: grid;
+            gap: 10px;
+            padding: 20px;
+        }
+
+        @media (min-width: 769px) {
+            .article-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .article-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .article-box {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 3 / 4;
+            border-radius: 10px;
+            background-color: #f8f8f8;
+            color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 2px solid #ccc;
+        }
+
+        .article-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .article-box img {
+            width: 100%;
+            height: 65%;
+            object-fit: cover;
+            border-bottom: 2px solid #ccc;
+        }
+
+        .article-info {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 12px;
+            background: linear-gradient(to top, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.6));
+            border-radius: 0 0 8px 8px;
+        }
+
+/* 記事のタイトル位置変更 */
+.article-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-bottom: 1px solid #bbb;
+    padding-bottom: 10px;  /* 間隔を広げた */
+    margin-top: 10px;  /* タイトルと下の要素の間隔 */
+}
+
+/* 概要とタイトルを隔てる線の間隔を調整 */
+.article-description {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 12px;  /* 概要とタイトルの間隔を広げた */
+    margin-bottom: 8px;
+}
+
+
+        .past-article-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            background: linear-gradient(45deg, #83ccd2, #180614);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            transform: translateY(0); /* 初期位置 */
+        }
+
+        /* カーソルを重ねたとき */
+        .past-article-box:hover {
+            transform: translateY(-5px); /* 上に浮かせる */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* 影を強調 */
+        }
+
+        /* 背景色の反転を滑らかにする */
+        .past-article-box:hover {
+            background: linear-gradient(45deg, #180614, #83ccd2);
+            transition: background 0.5s ease; /* 背景の反転を滑らかに */
+        }
+
+        /* アスペクト比調整 */
+        .past-article-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .past-article-box {
+            flex-basis: 100%;
+            aspect-ratio: 8 / 1; /* 横長のデザイン */
+        }
+
+        @media (min-width: 1200px) {
+            .past-article-box {
+                aspect-ratio: 8 / 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .past-article-box {
+                aspect-ratio: 4 / 1;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .past-article-box {
+                aspect-ratio: 3 / 1;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ボックスのデザイン調整 */
+        .article-container {
+            display: grid;
+            gap: 10px;
+            padding: 20px;
+        }
+
+        @media (min-width: 769px) {
+            .article-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .article-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* フッター */
+        footer {
+            background-color: #180614;
+            color: #fffffc;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        footer a {
+            color: #fffffc;
+            text-decoration: none;
+            padding: 10px;
+            display: inline-block;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        footer .footer-menu {
+            margin-top: 10px;
+        }
+
+        footer .footer-menu a {
+            margin: 0 20px;
+        }
+
+        footer a:hover,
+        footer a:active {
+            background-color: #83ccd2;
+            color: #180614;
+        }
+
+        @media (max-width: 480px) {
+            .carousel-images img {
+                aspect-ratio: 4 / 3;
+            }
+
+            .main-content {
+                font-size: 0.9rem;
+            }
+
+            footer .footer-menu {
+                display: block;
+                text-align: center;
+            }
+
+            footer .footer-menu a {
+                margin: 10px 0;
+            }
+        }
+
+        /* タブレット調整 */
+        @media (max-width: 768px) {
+            .carousel-images img {
+                width: 100%;
+            }
+
+            .main-content {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* 高解像度デバイス */
+        @media (min-width: 1201px) {
+            header nav a {
+                padding: 20px;
+            }
+
+            .carousel button {
+                padding: 20px;
+            }
+
+            .main-content {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <a href="https://ataro-qqq.github.io/Ao-rese2025-home-1/"><img src="2025 研究発表 gif 2025 03 09 01.gif" alt="研究発表2025"></a>
+        <button class="menu-toggle"><span>☰</span></button>
+        <nav>
+            <a href="">今回の記事</a>
+            <a href="https://ataro-qqq.github.io/Ao-rese2025-arts-1/">研究の概要</a>
+            <a href="https://ataro-qqq.github.io/Ao-rese2025-self-1/">製作者について</a>
+            <a href="https://ataro-qqq.github.io/Ao-rese2025-dood-1/">あとがき</a>
+        </nav>
+    </div>
+</header>
+
+<!-- メインビジュアル -->
+<div class="main-visual">
+    <img src="著者w 2025 03 11.png" alt="メインビジュアル">
+</div>
+
+
+<main>
+    <div class="main-content">
+        <h1><center>著者の情報</center></h1>
+        <p><center>&emsp;名前…奈良橋 篤生</center><br>
+          <center>&emsp;生年月日…平成21年9月19日</center><br>
+          <center>&emsp;所属…横浜創英中学・高等学校 サイエンスコース</center><br>
+          <center>&emsp;専門…社会心理学・数理心理学</center><br>
+          <center>&emsp;趣味…ランニング・ウクレレ・リコーダー など</center><br>
+          <center>&emsp;座右の銘…逃げるが勝ち</center><br>
+          <center>&emsp;連絡先…ataro.999.study@hotmail.com<br>
+          <br>
+          <br>
+        </p>
+    </div>
+</main>
+
+<footer>
+    <p>現在時刻: <span id="current-time">--:--:--</span></p>
+    <div class="footer-menu">
+        <a href="#">今回の記事</a>
+        <a href="https://ataro-qqq.github.io/Ao-rese2025-arts-1/">研究の概要</a>
+        <a href="https://ataro-qqq.github.io/Ao-rese2025-self-1/">作者</a>
+    </div>
+    <p>&copy; 2025 An's-Syachiku D</p>
+</footer>
+
+<script>
+    // 時間の更新
+    const currentTimeElem = document.getElementById('current-time');
+    setInterval(() => {
+        const currentDate = new Date();
+        currentTimeElem.textContent = currentDate.toLocaleTimeString();
+    }, 1000);
+
+    // メニュートグル
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('header nav');
+
+    menuToggle.addEventListener('click', () => {
+        nav.classList.toggle('active');
+    });
+
+    // クルーセル操作
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+    const carouselImages = document.querySelector('.carousel-images');
+    let currentIndex = 0;
+    const totalSlides = document.querySelectorAll('.carousel-images a').length;
+
+    function updateCarousel() {
+        carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    prevButton.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        updateCarousel();
+    });
+
+    nextButton.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateCarousel();
+    });
+
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateCarousel();
+    }, 5000);
+</script>
+
+</body>
+</html>
