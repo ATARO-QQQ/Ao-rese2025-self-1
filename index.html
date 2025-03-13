@@ -244,6 +244,29 @@
             }
         }
 
+/* 埋め込み画像のスタイル */
+.embedded-image {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+    width: 75%;
+}
+
+.embedded-image img {
+    width: 100%;
+    height: auto;
+    max-width: 1920px;
+    max-height: 1080px;
+    object-fit: contain;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .embedded-image {
+        width: 100%;
+    }
+}
+
         /* 新しい記事のリンクボックス */
         .article-container {
             display: grid;
@@ -502,6 +525,10 @@
 
 
 <main>
+
+<div class="embedded-image">
+    <img src="許して" alt="バキバキ同定">
+</div>
     <div class="main-content">
         <h1><center>著者の情報</center></h1>
         <p><center>&emsp;名前…奈良橋 篤生</center><br>
